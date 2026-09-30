@@ -52,3 +52,26 @@ const observer = new IntersectionObserver(
 );
 
 sections.forEach((section) => observer.observe(section));
+
+// Scroll reveal: fade elements in the first time they enter the viewport
+const revealTargets = document.querySelectorAll(
+  ".section-title, .project, .skill-group, .contact-text, #contact .hero-actions"
+);
+revealTargets.forEach((el) => el.classList.add("reveal"));
+
+if ("IntersectionObserver" in window) {
+  const revealObserver = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          obs.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12 }
+  );
+  revealTargets.forEach((el) => revealObserver.observe(el));
+} else {
+  revealTargets.forEach((el) => el.classList.add("visible"));
+}

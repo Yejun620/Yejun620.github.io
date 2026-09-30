@@ -87,7 +87,7 @@ ul {
 
 .nav-links {
   display: flex;
-  gap: 32px;
+  gap: 28px;
   margin-left: auto;
   margin-right: 20px;
 }
@@ -112,6 +112,25 @@ ul {
   display: flex;
   align-items: center;
   gap: 4px;
+}
+
+.lang-toggle {
+  min-width: 40px;
+  height: 40px;
+  padding: 0 8px;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--text);
+  background: none;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.lang-toggle:hover {
+  background: var(--line);
 }
 
 .theme-toggle {
@@ -354,6 +373,47 @@ ul {
   color: var(--muted);
 }
 
+/* ---------- 404 page ---------- */
+.error-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  text-align: center;
+}
+
+.error-code {
+  margin: 0;
+  font-size: clamp(4.5rem, 20vw, 9rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.error-text {
+  margin: 12px 0 0;
+  font-size: 1.1rem;
+  color: var(--muted);
+}
+
+.error-page .hero-actions {
+  justify-content: center;
+}
+
+/* ---------- Scroll reveal ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .js .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .js .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 /* ---------- Footer ---------- */
 .site-footer {
   padding: 32px 0;
@@ -397,6 +457,10 @@ ul {
     gap: 8px;
   }
 
+}
+
+/* The nav has five links, so it collapses into the menu button a bit earlier */
+@media (max-width: 760px) {
   .nav-toggle {
     display: flex;
   }
