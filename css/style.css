@@ -260,6 +260,40 @@ ul {
   border-radius: 999px;
 }
 
+/* ---------- Skills ---------- */
+.skill-group + .skill-group {
+  margin-top: 32px;
+}
+
+.skill-label {
+  margin: 0 0 12px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.skill-group .tags {
+  margin-top: 0;
+}
+
+.skill-text {
+  margin: 0 0 8px;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.skill-text strong {
+  color: var(--text);
+}
+
+/* ---------- Contact ---------- */
+.contact-text {
+  max-width: 480px;
+  margin: 0;
+  color: var(--muted);
+}
+
 /* ---------- Footer ---------- */
 .site-footer {
   padding: 32px 0;
