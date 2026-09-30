@@ -88,8 +88,7 @@
       if (text !== undefined) node.innerHTML = text;
     });
     document.documentElement.lang = lang;
-    button.textContent = lang === "ko" ? "EN" : "KO";
-    button.setAttribute("aria-label", lang === "ko" ? "Switch to English" : "한국어로 전환");
+    button.setAttribute("aria-checked", String(lang === "ko"));
   }
 
   let lang = "en";

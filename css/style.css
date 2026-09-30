@@ -114,23 +114,56 @@ ul {
   gap: 4px;
 }
 
+/* Sliding EN / KO switch */
 .lang-toggle {
-  min-width: 40px;
-  height: 40px;
-  padding: 0 8px;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 68px;
+  height: 32px;
+  margin-right: 6px;
+  padding: 2px;
   font: inherit;
-  font-size: 0.8rem;
+  font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.04em;
-  color: var(--text);
-  background: none;
-  border: 0;
-  border-radius: 8px;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 999px;
   cursor: pointer;
 }
 
-.lang-toggle:hover {
-  background: var(--line);
+.lang-toggle::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: calc(50% - 2px);
+  height: calc(100% - 4px);
+  background: var(--accent);
+  border-radius: 999px;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.lang-toggle[aria-checked="true"]::before {
+  transform: translateX(100%);
+}
+
+.lang-toggle span {
+  position: relative;
+  display: grid;
+  place-items: center;
+  transition: color 0.3s ease;
+}
+
+.lang-toggle span:first-child,
+.lang-toggle[aria-checked="true"] span:last-child {
+  color: var(--accent-text);
+}
+
+.lang-toggle[aria-checked="true"] span:first-child {
+  color: var(--muted);
 }
 
 .theme-toggle {
@@ -401,16 +434,20 @@ ul {
 }
 
 /* ---------- Scroll reveal ---------- */
+/* Everyone gets a fade; the upward slide is skipped when the OS asks for reduced motion */
+.js .reveal {
+  opacity: 0;
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.js .reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .js .reveal {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-
-  .js .reveal.visible {
-    opacity: 1;
-    transform: none;
+    transform: translateY(24px);
   }
 }
 
@@ -427,22 +464,17 @@ ul {
 }
 
 /* Fade colors when switching theme (class is added by js/main.js for a moment) */
-@media (prefers-reduced-motion: no-preference) {
-  html.theme-transition,
-  html.theme-transition *,
-  html.theme-transition *::before,
-  html.theme-transition *::after {
-    transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease !important;
-  }
+html.theme-transition,
+html.theme-transition *,
+html.theme-transition *::before,
+html.theme-transition *::after {
+  transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease !important;
 }
 
+/* Color fades are not motion, so only the smooth scrolling is turned off here */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-  }
-
-  * {
-    transition: none !important;
   }
 }
 
