@@ -91,17 +91,26 @@
     button.setAttribute("aria-checked", String(lang === "ko"));
   }
 
-  let lang = "en";
+  // The site always opens in English. Drop the choice an older version saved in the browser.
   try {
-    lang = localStorage.getItem("lang") === "ko" ? "ko" : "en";
+    localStorage.removeItem("lang");
   } catch (e) {}
-  if (lang === "ko") apply("ko");
+
+  const SWAP_MS = 350; // swap after the knob (0.35s) has finished sliding and the text has faded out
+  let lang = "en";
+  let timer;
 
   button.addEventListener("click", () => {
     lang = lang === "ko" ? "en" : "ko";
-    apply(lang);
-    try {
-      localStorage.setItem("lang", lang);
-    } catch (e) {}
+    // 1) Slide the knob right away
+    button.setAttribute("aria-checked", String(lang === "ko"));
+    // 2) Fade the page text out, swap the language while it is invisible, fade it back in
+    const root = document.documentElement;
+    root.classList.add("lang-switching");
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      apply(lang);
+      requestAnimationFrame(() => requestAnimationFrame(() => root.classList.remove("lang-switching")));
+    }, SWAP_MS);
   });
 })();

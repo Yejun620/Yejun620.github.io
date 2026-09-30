@@ -37,7 +37,7 @@ html {
 
 body {
   margin: 0;
-  font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-family: "Montserrat", "Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans KR", system-ui, -apple-system, "Segoe UI", sans-serif;
   color: var(--text);
   background: var(--bg);
   line-height: 1.6;
@@ -164,6 +164,17 @@ ul {
 
 .lang-toggle[aria-checked="true"] span:first-child {
   color: var(--muted);
+}
+
+/* Page text fades out and back in when the language changes (class set by js/i18n.js) */
+main,
+.nav-links {
+  transition: opacity 0.25s ease;
+}
+
+html.lang-switching main,
+html.lang-switching .nav-links {
+  opacity: 0;
 }
 
 .theme-toggle {
