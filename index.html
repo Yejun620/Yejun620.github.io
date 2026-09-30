@@ -29,16 +29,22 @@
   <main>
     <section id="home" class="hero">
       <div class="container hero-inner">
-        <p class="hero-eyebrow">Hi, I'm</p>
-        <h1 class="hero-title">Yejun Lee</h1>
-        <p class="hero-role">Full-stack Developer</p>
-        <p class="hero-summary">
-          Computer Science student at Stony Brook University, graduating December 2026.
-          I build web applications end to end, from RESTful APIs to LLM-powered features.
-        </p>
-        <div class="hero-actions">
-          <a href="#projects" class="btn btn-primary">View Projects</a>
-          <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+        <div class="hero-text">
+          <p class="hero-eyebrow">Hi, I'm</p>
+          <h1 class="hero-title">Yejun Lee</h1>
+          <p class="hero-role">Full-stack Developer</p>
+          <p class="hero-summary">
+            Computer Science student at Stony Brook University, graduating December 2026.
+            I build web applications end to end, from RESTful APIs to LLM-powered features.
+          </p>
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary">View Projects</a>
+            <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+          </div>
+        </div>
+        <!-- Put your photo at images/profile.jpg. The frame stays empty until the file exists. -->
+        <div class="hero-photo">
+          <img src="images/profile.jpg" alt="Portrait of Yejun Lee" onerror="this.remove()" />
         </div>
       </div>
     </section>
@@ -114,6 +120,20 @@
     <section id="experience" class="section">
       <div class="container">
         <h2 class="section-title">Experience</h2>
+
+        <article class="project">
+          <div class="project-meta">
+            <p class="project-date">Sep 2026 ~ Present</p>
+            <p class="project-org">Stony Brook University</p>
+          </div>
+          <div class="project-body">
+            <h3 class="project-name">Undergraduate Researcher | Brain-Inspired Computing Lab</h3>
+            <ul class="project-points">
+              <li>Conducting undergraduate research at the Brain-Inspired Computing Lab under the supervision of Professor Yang YoonSeok.</li>
+              <!-- TODO: add 1-2 bullets describing the research topic and your contribution -->
+            </ul>
+          </div>
+        </article>
 
         <article class="project">
           <div class="project-meta">
@@ -196,7 +216,7 @@
         <h2 class="section-title">Contact</h2>
         <p class="contact-text">Interested in working together or just want to say hi? Reach out anytime.</p>
         <div class="hero-actions">
-          <a href="mailto:yejun.lee@stonybrook.edu" class="btn btn-primary">Email Me</a>
+          <a href="mailto:bensteve620@gmail.com" class="btn btn-primary">Email Me</a>
           <a href="https://github.com/Yejun620" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">GitHub</a>
         </div>
       </div>
