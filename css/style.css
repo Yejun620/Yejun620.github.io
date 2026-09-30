@@ -6,8 +6,21 @@
   --line: #e5e7eb;
   --accent: #111111;
   --accent-text: #ffffff;
+  --header-bg: rgba(255, 255, 255, 0.92);
   --header-h: 64px;
   --max-w: 960px;
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  --bg: #0f1115;
+  --text: #f3f4f6;
+  --muted: #a0a6b0;
+  --line: #262a33;
+  --accent: #f3f4f6;
+  --accent-text: #0f1115;
+  --header-bg: rgba(15, 17, 21, 0.9);
+  color-scheme: dark;
 }
 
 /* ---------- Base ---------- */
@@ -54,7 +67,7 @@ ul {
   top: 0;
   z-index: 10;
   height: var(--header-h);
-  background: rgba(255, 255, 255, 0.92);
+  background: var(--header-bg);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--line);
 }
@@ -75,6 +88,8 @@ ul {
 .nav-links {
   display: flex;
   gap: 32px;
+  margin-left: auto;
+  margin-right: 20px;
 }
 
 .nav-links a {
@@ -84,8 +99,54 @@ ul {
   transition: color 0.2s;
 }
 
-.nav-links a:hover {
+.nav-links a:hover,
+.nav-links a.active {
   color: var(--text);
+}
+
+.nav-links a.active {
+  font-weight: 700;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.theme-toggle {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  color: var(--text);
+  background: none;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.theme-toggle:hover {
+  background: var(--line);
+}
+
+.theme-toggle .icon-sun {
+  display: none;
+}
+
+:root[data-theme="dark"] .theme-toggle .icon-sun {
+  display: block;
+}
+
+:root[data-theme="dark"] .theme-toggle .icon-moon {
+  display: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
 .nav-toggle {
@@ -306,6 +367,26 @@ ul {
   margin: 0;
 }
 
+/* Fade colors when switching theme (class is added by js/main.js for a moment) */
+@media (prefers-reduced-motion: no-preference) {
+  html.theme-transition,
+  html.theme-transition *,
+  html.theme-transition *::before,
+  html.theme-transition *::after {
+    transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  * {
+    transition: none !important;
+  }
+}
+
 /* ---------- Mobile ---------- */
 @media (max-width: 640px) {
   .section {
@@ -326,6 +407,7 @@ ul {
     top: var(--header-h);
     left: 0;
     right: 0;
+    margin: 0;
     flex-direction: column;
     gap: 0;
     background: var(--bg);
