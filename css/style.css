@@ -364,6 +364,18 @@ html.lang-switching .nav-links {
   line-height: 1.4;
 }
 
+.project-name a {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  text-decoration-color: var(--line);
+  transition: text-decoration-color 0.2s;
+}
+
+.project-name a:hover {
+  text-decoration-color: var(--text);
+}
+
 .project-points {
   display: grid;
   gap: 8px;
